@@ -31,6 +31,8 @@ public class Estudiante {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_estudiante_generador")
     @Column(name = "estu_id")
     private Integer id;
+    @Column(name = "estu_cedula")
+    private String cedula;
     @Column(name = "estu_nombre")
     private String nombre;
     @Column(name = "estu_apellido")
@@ -39,6 +41,7 @@ public class Estudiante {
     private LocalDate fechaNacimiento;
     @Column(name = "estu_genero")
     private String genero;
+   
 
     //SET Y GET 
     public Integer getId() {
@@ -48,7 +51,15 @@ public class Estudiante {
     public void setId(Integer id) {
         this.id = id;
     }
+    
+    public String getCedula() {
+        return cedula;
+    }
 
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -80,6 +91,18 @@ public class Estudiante {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+
+    @Override
+    public String toString() {
+        return "Estudiante [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
+                + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + "]";
+    }
+
+    
+
+    
+
+    
     
 
 }

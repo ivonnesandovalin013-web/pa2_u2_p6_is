@@ -22,53 +22,56 @@ public class Main {
 
         public int run(String... args) {
             Estudiante estudiante = new Estudiante();
+            estudiante.setCedula("1752152924");
             estudiante.setNombre("Nayely");
             estudiante.setApellido("Sandovalin");    
             estudiante.setFechaNacimiento(LocalDate.of(2001, 8, 3));
             estudiante.setGenero("F");
 
+            Estudiante estudiante2 = new Estudiante();
+            estudiante2.setCedula("1752152924");
+            estudiante2.setNombre("Lesly");
+            estudiante2.setApellido("Vela");    
+            estudiante2.setFechaNacimiento(LocalDate.of(2004, 2, 22));
+            estudiante2.setGenero("F");
+
+            Estudiante estudiante3 = new Estudiante();
+            estudiante3.setCedula("1711969715");
+            estudiante3.setNombre("Marco");
+            estudiante3.setApellido("Vela");    
+            estudiante3.setFechaNacimiento(LocalDate.of(1998, 2, 23));
+            estudiante3.setGenero("M");
+
             //MÉTODO GUARDAR
             System.out.println( "MÉTODO GUARDAR");
             this.estudiante.guardar(estudiante);
+            this.estudiante.guardar(estudiante2);
+            this.estudiante.guardar(estudiante3);
+        
 
-            //MÉTODO BUSCAR
-             System.out.println( "MÉTODO BUSCAR");
-            Estudiante estudianteBuscar = this.estudiante.buscar(2);
-            if(estudianteBuscar != null){
-                System.out.println("Estudiante encontrado: " + estudianteBuscar.getNombre() + " " + estudianteBuscar.getApellido());
-            }else{
-                System.out.println("Estudiante no encontrado");
+            //METODO BUSCAR TODOS
+           /*  System.out.println( "MÉTODO BUSCAR TODOS");
+            System.out.println("Lista de estudiantes:");
+            for (Estudiante e : this.estudiante.buscarTodos()) {
+                System.out.println(e.toString());
             }
 
-            //MÉTODO ACTUALIZAR
-             System.out.println( "MÉTODO ACTUALIZAR");
-            if (estudianteBuscar != null) {
-                 System.out.println("Estudiante encontrado: " + estudianteBuscar.getNombre() + " " + estudianteBuscar.getApellido());
-    
-                estudianteBuscar.setNombre("Ivonne");
-                estudianteBuscar.setApellido("Tarco");
-    
-                this.estudiante.actualizar(estudianteBuscar);
-    
-                System.out.println("¡Estudiante actualizado correctamente en la base de datos!");
+            //METODO CONSULTAR POR NOMBRE
+            System.out.println( "MÉTODO CONSULTAR POR NOMBRE");
+            System.out.println("Lista de estudiantes con el nombre 'Nayely':");
+            for(Estudiante e: this.estudiante.consultarPorNombre("Nayely")){
+                System.out.println(e.toString());
+            }*/
 
-            } else {
-                    System.out.println("Estudiante no encontrado");
-            }
-            
-            //MÉTODO ELIMINAR
-            System.out.println( "MÉTODO ELIMINAR");
-            Estudiante estudianteEliminar = this.estudiante.buscar(1);
-           if (estudianteEliminar != null) {
-                 System.out.println("Estudiante encontrado: " + estudianteEliminar.getNombre() + " " + estudianteEliminar.getApellido());
+            //METODO CONSULTAR POR CEDULA
+            System.out.println("METODO CONSULTAR POR CEDULA");
+            System.out.println("Estudiante con celdula '1752152924' : ");
+            System.out.println(this.estudiante.consultarPorCedula("1752152924"));
     
-                this.estudiante.eliminar(estudianteEliminar.getId());
-    
-                System.out.println("¡Estudiante eliminado correctamente de la base de datos!");
 
-            } else {
-                    System.out.println("Estudiante no encontrado, no se puede eliminar");
-            }
+
+
+
             return 0;
         }
     }

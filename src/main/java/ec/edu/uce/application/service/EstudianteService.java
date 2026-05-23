@@ -1,5 +1,7 @@
 package ec.edu.uce.application.service;
 
+import java.util.List;
+
 import ec.edu.uce.domain.model.Estudiante;
 import ec.edu.uce.domain.repository.EstudianteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -23,6 +25,18 @@ public class EstudianteService { //Programamos todos los casos de uso de Estudia
 
     public void eliminar(Integer id){
         this.estudianteRepository.eliminar(id); //Llamamos al método eliminar del repositorio para eliminar un estudiante por su id en la base de datos.
+    }
+
+    public List<Estudiante> buscarTodos(){
+        return this.estudianteRepository.seleccionarTodos();
+    }
+
+    public List<Estudiante> consultarPorNombre(String nombre){
+        return this.estudianteRepository.seleccionarPorNombre(nombre);
+    }
+
+    public Estudiante consultarPorCedula(String cedula){
+        return this.estudianteRepository.seleccionarPorCedula(cedula);
     }
 
 }
