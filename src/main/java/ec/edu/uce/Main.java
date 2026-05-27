@@ -1,6 +1,8 @@
 package ec.edu.uce;
 
 
+import java.time.LocalDate;
+
 import ec.edu.uce.application.service.ProfesorService;
 import ec.edu.uce.domain.model.Profesor;
 import io.quarkus.runtime.Quarkus;
@@ -24,54 +26,50 @@ public class Main {
             profesor1.setNombre("Magaly");
             profesor1.setApellido("Diaz");
             profesor1.setAsignatura("Hisotoria");
+            profesor1.setGradoAcademico("Phd");
+            profesor1.setSueldo(2000);
+            profesor1.setFechaIngreso(LocalDate.of(2001, 5, 27));
 
             Profesor profesor2 = new Profesor();
             profesor2.setNombre("Nelly");
             profesor2.setApellido("Vela");
             profesor2.setAsignatura("Emprendimiento");
+            profesor2.setGradoAcademico("Master");
+            profesor2.setSueldo(1500);
+            profesor2.setFechaIngreso(LocalDate.of(2005, 8, 15));
+
+            Profesor profesor3 = new Profesor();
+            profesor3.setNombre("Carlos");
+            profesor3.setApellido("Perez"); 
+            profesor3.setAsignatura("Emprendimiento");
+            profesor3.setGradoAcademico("Phd");
+            profesor3.setSueldo(2500);
+            profesor3.setFechaIngreso(LocalDate.of(2010, 3, 10));
 
             //MÉTODO GUARDAR
             System.out.println( "MÉTODO GUARDAR");
             this.profesor.guardar(profesor1);
             this.profesor.guardar(profesor2);
+            this.profesor.guardar(profesor3);
 
-            //MÉTODO BUSCAR
-             System.out.println( "MÉTODO BUSCAR");
-            Profesor profesorBuscar = this.profesor.buscar(2);
-            if(profesorBuscar != null){
-                System.out.println("Profesor encontrado: " + profesorBuscar.getNombre() + " " + profesorBuscar.getApellido());
-            }else{
-                System.out.println("Profesor no encontrado");
+            //METODO BUSCAR POR ASIGNATURA
+            System.out.println("MÉTODO BUSCAR POR ASIGNATURA");
+            for (Profesor p : this.profesor.buscarPorAsignatura("Emprendimiento")) {
+                System.out.println(p.toString());
             }
 
-            //MÉTODO ACTUALIZAR
-             System.out.println( "MÉTODO ACTUALIZAR");
-            if (profesorBuscar != null) {
-                 System.out.println("Profesor encontrado: " + profesorBuscar.getNombre() + " " + profesorBuscar.getApellido());
-    
-                profesorBuscar.setNombre("Ivonne");
-    
-                this.profesor.actualizar(profesorBuscar);
-    
-                System.out.println("¡Profesor actualizado correctamente en la base de datos!");
+            //METODO CONTAR POR GRADO ACADEMICO
+            System.out.println("MÉTODO CONTAR POR GRADO ACADEMICO");
+            Long cantidadPhd = this.profesor.contarPorGradoAcademico("Phd");
+            System.out.println("Cantidad de profesores con grado académico Phd: " + cantidadPhd);
 
-            } else {
-                    System.out.println("Profesor no encontrado");
+            //METODO BUSCAR SUELDOS MAYORES A
+            System.out.println("MÉTODO BUSCAR SUELDOS MAYORES A 1800");
+            for (Profesor p : this.profesor.buscarSueldosMayoresA(1800)) {
+                System.out.println(p.toString());
             }
-            
-            //MÉTODO ELIMINAR
-            System.out.println( "MÉTODO ELIMINAR");
-            Profesor profesorEliminar = this.profesor.buscar(1);
-           if (profesorEliminar != null) {
-                 System.out.println("Profesor encontrado: " + profesorEliminar.getNombre() + " " + profesorEliminar.getApellido());
-    
-                this.profesor.eliminar(profesorEliminar.getId());
-    
-                System.out.println("¡Profesor eliminado correctamente de la base de datos!");
 
-            } else {
-                    System.out.println("Profesor no encontrado, no se puede eliminar");
-            }
+             Quarkus.waitForExit();
             return 0;
         }
     }

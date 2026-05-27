@@ -1,5 +1,7 @@
 package ec.edu.uce.domain.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,12 @@ public class Profesor {
     private String apellido;
     @Column(name = "prof_asignatura")
     private String asignatura;
-
+    @Column(name = "prof_grado_académico")
+    private String gradoAcademico;
+    @Column(name = "prof_sueldo")
+    private Integer sueldo;
+    @Column(name = "prof_fecha_ingreso")
+    private LocalDate fechaIngreso;
 
     public Integer getId() {
         return id;
@@ -48,7 +55,32 @@ public class Profesor {
     public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
+    public String getGradoAcademico() {
+        return gradoAcademico;
+    }
+    public void setGradoAcademico(String gradoAcademico) {
+        this.gradoAcademico = gradoAcademico;
+    }
+    public Integer getSueldo() {
+        return sueldo;
+    }
+    public void setSueldo(Integer sueldo) {
+        this.sueldo = sueldo;
+    }
+    public LocalDate getFechaIngreso() {
+        return fechaIngreso;
+    }
+    public void setFechaIngreso(LocalDate fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+    @Override
+    public String toString() {
+        return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", asignatura=" + asignatura
+                + ", gradoAcademico=" + gradoAcademico + ", sueldo=" + sueldo + ", fechaIngreso=" + fechaIngreso + "]";
+    }
 
+    
+    
     
 
 }
