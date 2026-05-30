@@ -100,6 +100,19 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
         return miQuery.getSingleResult();
     }
 
+    //NativeQuery: es una consulta SQL nativa, es decir, que se escribe directamente en el lenguaje SQL específico de la base de datos que se 
+    // está utilizando. 
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Estudiante> seleccionarTodosNative() {
+        Query miQuery = this.em.createNativeQuery("SELECT * FROM estudiante",Estudiante.class);
+        return (List<Estudiante>)miQuery.getResultList();
+    }
+
+    
+    
+
 
 
 }

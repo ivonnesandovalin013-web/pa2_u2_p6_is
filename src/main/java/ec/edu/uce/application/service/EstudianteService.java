@@ -60,4 +60,8 @@ public class EstudianteService { //Programamos todos los casos de uso de Estudia
         return this.estudianteRepository.seleccionarContar();
     }
 
+    public List<Estudiante> consultarTodosNative(){
+        return this.estudianteRepository.seleccionarTodosNative();
+    }
+
 }

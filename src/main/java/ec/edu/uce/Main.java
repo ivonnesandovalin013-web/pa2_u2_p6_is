@@ -96,6 +96,12 @@ public class Main {
             System.out.println( "MÉTODO CONTAR ESTUDIANTES");
             System.out.println("Cantidad de estudiantes registrados: " + this.estudiante.consultarContar());
 
+            System.out.println("METODO CONSULTAR POR NATIVE");
+            System.out.println("Lista de estudiantes utilizando consulta nativa:");
+            for(Estudiante e: this.estudiante.consultarTodosNative()){
+                System.out.println(e.toString());
+            }
+
 
             return 0;
         }
