@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -25,9 +27,21 @@ import jakarta.persistence.Table;
                             // En este caso, la tabla se llamará "estudiante". Si quisieras especificar un
                             // nombre diferente para la tabla, podrías hacerlo así: @Table(name =
                             // "nombre_de_la_tabla").
+@NamedQueries({
+    @NamedQuery(name = "Estudiante.buscarPorGenero", query = "SELECT e FROM Estudiante e WHERE e.genero = :genero"),
+    @NamedQuery(name = "Estudiante.buscarPorApellido", query = "SELECT e FROM Estudiante e WHERE e.apellido = :apellido"),
+    @NamedQuery(name = "Estudiante.buscarPorRangoFecha", query = "SELECT e FROM Estudiante e WHERE e.fechaNacimiento BETWEEN :inicio AND :fin"),
+    @NamedQuery(name = "Estudiante.contar", query = "SELECT COUNT(e) FROM Estudiante e")
+})
+//@NamedQuery(name = "Estudiante.buscarPorGenero", query = "SELECT e FROM Estudiante e WHERE e.genero = :genero") // Esta anotación se utiliza 
+// para definir una consulta JPQL (Java Persistence Query Language) con un nombre específico. En este caso, se está definiendo una consulta 
+// llamada "Estudiante.buscarPorGenero" que selecciona todas las entidades de tipo Estudiante donde el atributo genero coincide con un 
+// valor proporcionado como parámetro. La consulta se puede ejecutar posteriormente utilizando el nombre definido, lo que facilita la 
+// reutilización de consultas en diferentes partes de la aplicación.
+
 public class Estudiante {
     @Id
-    @SequenceGenerator(name = "seq_estudiante_generador", sequenceName = "seq_estudiante", allocationSize = 1 )
+    @SequenceGenerator(name = "seq_estudiante_generador", sequenceName = "seq_estudiante", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_estudiante_generador")
     @Column(name = "estu_id")
     private Integer id;
@@ -41,9 +55,8 @@ public class Estudiante {
     private LocalDate fechaNacimiento;
     @Column(name = "estu_genero")
     private String genero;
-   
 
-    //SET Y GET 
+    // SET Y GET
     public Integer getId() {
         return id;
     }
@@ -51,7 +64,7 @@ public class Estudiante {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getCedula() {
         return cedula;
     }
@@ -59,7 +72,7 @@ public class Estudiante {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -97,12 +110,5 @@ public class Estudiante {
         return "Estudiante [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
                 + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + "]";
     }
-
-    
-
-    
-
-    
-    
 
 }

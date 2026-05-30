@@ -25,7 +25,7 @@ public class Main {
             estudiante.setCedula("1752152924");
             estudiante.setNombre("Nayely");
             estudiante.setApellido("Sandovalin");    
-            estudiante.setFechaNacimiento(LocalDate.of(2001, 8, 3));
+            estudiante.setFechaNacimiento(LocalDate.of(2010, 8, 3));
             estudiante.setGenero("F");
 
             Estudiante estudiante2 = new Estudiante();
@@ -39,7 +39,7 @@ public class Main {
             estudiante3.setCedula("1711969715");
             estudiante3.setNombre("Marco");
             estudiante3.setApellido("Vela");    
-            estudiante3.setFechaNacimiento(LocalDate.of(1998, 2, 23));
+            estudiante3.setFechaNacimiento(LocalDate.of(2015, 2, 23));
             estudiante3.setGenero("M");
 
             //MÉTODO GUARDAR
@@ -64,12 +64,37 @@ public class Main {
             }*/
 
             //METODO CONSULTAR POR CEDULA
-            System.out.println("METODO CONSULTAR POR CEDULA");
+            /*System.out.println("METODO CONSULTAR POR CEDULA");
             System.out.println("Estudiante con celdula '1752152924' : ");
-            System.out.println(this.estudiante.consultarPorCedula("1752152924"));
-    
+            System.out.println(this.estudiante.consultarPorCedula("1752152924"));*/
 
+            System.out.println( "MÉTODO CONSULTAR POR GENERO");
+            System.out.println("Lista de estudiantes con el GENERO M':");
+            for(Estudiante e: this.estudiante.consultarPorGenero("M")){
+                System.out.println(e.toString());
+            }
 
+            
+            System.out.println( "MÉTODO CONSULTAR POR GENERO TYPED");
+            System.out.println("Lista de estudiantes con el GENERO F':");
+            for(Estudiante e: this.estudiante.consultarPorGeneroTyped("F")){
+                System.out.println(e.toString());
+            }
+
+            System.out.println( "MÉTODO CONSULTAR POR RANGO DE FECHAS");
+            System.out.println("Lista de estudiantes nacidos entre los 2010-01-01 y 2020-01-01':");
+            for(Estudiante e: this.estudiante.consultarPorRangoFechas(LocalDate.of(2010, 1, 1), LocalDate.of(2020, 1, 1))){
+                System.out.println(e.toString());
+            }
+
+            System.out.println( "MÉTODO CONSULTAR POR APELLIDO");
+            System.out.println("Lista de estudiantes con apellido 'Sandovalin':");
+            for(Estudiante e: this.estudiante.consultarPorApellido("Sandovalin")){
+                System.out.println(e.toString());
+            }
+
+            System.out.println( "MÉTODO CONTAR ESTUDIANTES");
+            System.out.println("Cantidad de estudiantes registrados: " + this.estudiante.consultarContar());
 
 
             return 0;

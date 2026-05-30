@@ -1,5 +1,6 @@
 package ec.edu.uce.infrastructure.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ec.edu.uce.domain.model.Estudiante;
@@ -7,6 +8,7 @@ import ec.edu.uce.domain.repository.EstudianteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 @ApplicationScoped
@@ -35,7 +37,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
         this.em.remove(this.seleccionar(id)); //El método remove() se utiliza para eliminar una entidad de la base de datos. En este caso, se está eliminando un objeto de tipo Estudiante que se obtiene previamente mediante el método seleccionar(id).
     }
 
-     //1. Query
+     //1. Query (JPQL QUERY)
     //1.1 TypedQuery: tiene un tipado, sabemos que tipo de consulta u objeto con el que voy a trabajar. En los 2 casos usamos JPQL
     @Override
     public List<Estudiante> seleccionarTodos() {
@@ -61,11 +63,50 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
         //return miQuery.getResultList().getFirst();
         return miQuery.getResultList().getLast();
     }
-    
+
+    //1.2 NamedQuery: es una consulta que esta predefinida y que voy a poder reutilizarla.
+    @Override
+    public List<Estudiante> seleccionarPorGenero(String genero) {
+        Query myQuery = this.em.createNamedQuery("Estudiante.buscarPorGenero");
+        myQuery.setParameter("genero", genero);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Estudiante> seleccionarPorGeneroTyped(String genero) {
+        TypedQuery<Estudiante> miQuery = this.em.createNamedQuery("Estudiante.buscarPorGenero", Estudiante.class);
+        miQuery.setParameter("genero", genero);
+        return miQuery.getResultList();
+    }
+
+    @Override
+    public List<Estudiante> seleccionarPorRangoFechas(LocalDate fechaInicio, LocalDate fechaFin) {
+        TypedQuery<Estudiante> miQuery = this.em.createNamedQuery("Estudiante.buscarPorRangoFecha", Estudiante.class);
+        miQuery.setParameter("inicio", fechaInicio);
+        miQuery.setParameter("fin", fechaFin);
+        return miQuery.getResultList();
+    }
+
+    @Override
+    public List<Estudiante> seleccionarPorApellido(String apellido) {
+        TypedQuery<Estudiante> miQuery = this.em.createNamedQuery("Estudiante.buscarPorApellido", Estudiante.class);
+        miQuery.setParameter("apellido", apellido);
+        return miQuery.getResultList();
+    }
+
+    @Override
+    public Long seleccionarContar() {
+        TypedQuery<Long> miQuery = this.em.createNamedQuery("Estudiante.contar", Long.class);
+        return miQuery.getSingleResult();
+    }
+
+
+
+}
     
 
    
-    //1.2 NamedQuery: es una consulta que esta predefinida y que voy a poder reutilizarla.
+    
 
-}
+
 
