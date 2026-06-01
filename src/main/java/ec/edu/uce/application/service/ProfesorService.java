@@ -39,4 +39,16 @@ public class ProfesorService {
     public List<Profesor> buscarSueldosMayoresA(Integer sueldo){
         return this.profesorRepository.seleccionarSueldoMayorA(sueldo);
     }
+
+    public List<Profesor> buscarPorAsignaturaNamed(String asignatura){
+        return this.profesorRepository.seleccionarPorAsignaturaNamed(asignatura);
+    }
+
+    public Long contarPorGradoAcademicoNamed(String gradoAcademico){
+        return this.profesorRepository.contarPorGradoAcademicoNamed(gradoAcademico);
+    }
+
+    public List<Profesor> buscarSueldosMayoresANamed(Integer sueldo){
+        return this.profesorRepository.seleccionarSueldoMayorANamed(sueldo);
+    }
 }

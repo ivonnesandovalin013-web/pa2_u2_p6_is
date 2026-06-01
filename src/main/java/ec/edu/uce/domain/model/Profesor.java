@@ -2,16 +2,24 @@ package ec.edu.uce.domain.model;
 
 import java.time.LocalDate;
 
+import jakarta.inject.Named;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "profesor")
+@NamedQueries({
+    @NamedQuery(name = "Profesor.seleccionarPorAsignatura", query = "SELECT p FROM Profesor p WHERE p.asignatura LIKE :asignatura"),
+    @NamedQuery(name = "Profesor.contarPorGradoAcademico", query = "SELECT COUNT(p) FROM Profesor p WHERE p.gradoAcademico LIKE :gradoAcademico"),
+    @NamedQuery(name = "Profesor.seleccionarPorSueldoMayorA", query = "SELECT p FROM Profesor p WHERE p.sueldo > :sueldo")
+})
 public class Profesor {
     @Id
     @SequenceGenerator(name = "seq_profesor_generador", sequenceName = "seq_profesor", allocationSize =1)

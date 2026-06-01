@@ -66,6 +66,27 @@ public class ProfesorRepositoryImpl implements ProfesorRepository {
        return miQuery.getResultList();
     }
 
+    @Override
+    public List<Profesor> seleccionarPorAsignaturaNamed(String asignatura) {
+        TypedQuery<Profesor> miQuery = this.em.createNamedQuery("Profesor.seleccionarPorAsignatura", Profesor.class);
+        miQuery.setParameter("asignatura", "%" + asignatura + "%");
+        return miQuery.getResultList();
+    }
+
+    @Override
+    public Long contarPorGradoAcademicoNamed(String gradoAcademico) {
+        TypedQuery<Long> miQuery = this.em.createNamedQuery("Profesor.contarPorGradoAcademico", Long.class);
+        miQuery.setParameter("gradoAcademico", "%" + gradoAcademico + "%");
+        return miQuery.getSingleResult();
+    }
+
+    @Override
+    public List<Profesor> seleccionarSueldoMayorANamed(Integer sueldo) {
+        TypedQuery<Profesor> miQuery = this.em.createNamedQuery("Profesor.seleccionarPorSueldoMayorA", Profesor.class);
+        miQuery.setParameter("sueldo", sueldo);
+        return miQuery.getResultList();
+    }
+
 }
         
     

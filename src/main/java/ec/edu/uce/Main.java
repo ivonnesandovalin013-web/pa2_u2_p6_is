@@ -52,24 +52,23 @@ public class Main {
             this.profesor.guardar(profesor2);
             this.profesor.guardar(profesor3);
 
-            //METODO BUSCAR POR ASIGNATURA
-            System.out.println("MÉTODO BUSCAR POR ASIGNATURA");
-            for (Profesor p : this.profesor.buscarPorAsignatura("Emprendimiento")) {
-                System.out.println(p.toString());
+            //METODO SELECCIONAR POR ASIGNATURA NAMEDQUERY
+            System.out.println( "MÉTODO SELECCIONAR POR ASIGNATURA NAMEDQUERY");
+            for(Profesor p : this.profesor.buscarPorAsignaturaNamed("Emprendimiento")){
+                System.out.println(p.getNombre() + " " + p.getApellido());
             }
 
-            //METODO CONTAR POR GRADO ACADEMICO
-            System.out.println("MÉTODO CONTAR POR GRADO ACADEMICO");
-            Long cantidadPhd = this.profesor.contarPorGradoAcademico("Phd");
-            System.out.println("Cantidad de profesores con grado académico Phd: " + cantidadPhd);
+             //METODO CONTAR POR GRADO ACADEMICO NAMEDQUERY
+             System.out.println( "MÉTODO CONTAR POR GRADO ACADEMICO NAMEDQUERY");
+             Long count = this.profesor.contarPorGradoAcademicoNamed("Phd");
+             System.out.println("Número de profesores con grado académico Phd: " + count);
 
-            //METODO BUSCAR SUELDOS MAYORES A
-            System.out.println("MÉTODO BUSCAR SUELDOS MAYORES A 1800");
-            for (Profesor p : this.profesor.buscarSueldosMayoresA(1800)) {
-                System.out.println(p.toString());
-            }
+              //METODO SELECCIONAR SUELDO MAYOR A NAMEDQUERY
+              System.out.println( "MÉTODO SELECCIONAR SUELDO MAYOR A NAMEDQUERY");
+              for(Profesor p : this.profesor.buscarSueldosMayoresANamed(1800)){
+                  System.out.println(p.getNombre() + " " + p.getApellido() + " - Sueldo: " + p.getSueldo());
+              }
 
-             Quarkus.waitForExit();
             return 0;
         }
     }
