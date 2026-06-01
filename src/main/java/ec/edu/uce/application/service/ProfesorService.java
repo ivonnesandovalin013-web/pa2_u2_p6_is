@@ -51,4 +51,16 @@ public class ProfesorService {
     public List<Profesor> buscarSueldosMayoresANamed(Integer sueldo){
         return this.profesorRepository.seleccionarSueldoMayorANamed(sueldo);
     }
+
+    public Profesor buscarPorCedulaNativo(String cedula){
+        return this.profesorRepository.seleccionarPorCedulaNativo(cedula);
+    }
+
+    public List<Profesor> buscarPorNombreNativo(String nombreTexto){
+        return this.profesorRepository.seleccionarPorNombreNativo(nombreTexto);
+    }
+
+    public List<Profesor> buscarPorGeneroNativo(String genero){
+        return this.profesorRepository.seleccionarPorGeneroNativo(genero);
+    }
 }

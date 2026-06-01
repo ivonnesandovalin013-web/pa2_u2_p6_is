@@ -29,6 +29,8 @@ public class Main {
             profesor1.setGradoAcademico("Phd");
             profesor1.setSueldo(2000);
             profesor1.setFechaIngreso(LocalDate.of(2001, 5, 27));
+            profesor1.setCedula("1234567890");
+            profesor1.setGenero("F");
 
             Profesor profesor2 = new Profesor();
             profesor2.setNombre("Nelly");
@@ -37,6 +39,8 @@ public class Main {
             profesor2.setGradoAcademico("Master");
             profesor2.setSueldo(1500);
             profesor2.setFechaIngreso(LocalDate.of(2005, 8, 15));
+            profesor2.setCedula("0987654321");
+            profesor2.setGenero("F");
 
             Profesor profesor3 = new Profesor();
             profesor3.setNombre("Carlos");
@@ -45,6 +49,8 @@ public class Main {
             profesor3.setGradoAcademico("Phd");
             profesor3.setSueldo(2500);
             profesor3.setFechaIngreso(LocalDate.of(2010, 3, 10));
+            profesor3.setCedula("1122334455");
+            profesor3.setGenero("M");
 
             //MÉTODO GUARDAR
             System.out.println( "MÉTODO GUARDAR");
@@ -52,22 +58,34 @@ public class Main {
             this.profesor.guardar(profesor2);
             this.profesor.guardar(profesor3);
 
-            //METODO SELECCIONAR POR ASIGNATURA NAMEDQUERY
-            System.out.println( "MÉTODO SELECCIONAR POR ASIGNATURA NAMEDQUERY");
-            for(Profesor p : this.profesor.buscarPorAsignaturaNamed("Emprendimiento")){
-                System.out.println(p.getNombre() + " " + p.getApellido());
+            //METODO BUSCAR POR CEDULA NATIVO
+            System.out.println( "MÉTODO BUSCAR POR CEDULA NATIVO");
+            Profesor profesorEncontrado = this.profesor.buscarPorCedulaNativo("1234567890");
+            if (profesorEncontrado != null) {
+                System.out.println("Profesor encontrado: " + profesorEncontrado.getNombre() + " " + profesorEncontrado.getApellido());
+            } else {
+                System.out.println("No se encontró ningún profesor con esa cédula.");
             }
 
-             //METODO CONTAR POR GRADO ACADEMICO NAMEDQUERY
-             System.out.println( "MÉTODO CONTAR POR GRADO ACADEMICO NAMEDQUERY");
-             Long count = this.profesor.contarPorGradoAcademicoNamed("Phd");
-             System.out.println("Número de profesores con grado académico Phd: " + count);
+            //METODO BUSCAR POR NOMBRE NATIVO
+            System.out.println( "MÉTODO BUSCAR POR NOMBRE NATIVO");         
+            for (Profesor p : this.profesor.buscarPorNombreNativo("Carlos")) {
+                if (p != null) {
+                    System.out.println("Profesor encontrado: " + p.toString());
+                } else {
+                    System.out.println("No se encontró ningún profesor con ese nombre.");
+                }
+            }
 
-              //METODO SELECCIONAR SUELDO MAYOR A NAMEDQUERY
-              System.out.println( "MÉTODO SELECCIONAR SUELDO MAYOR A NAMEDQUERY");
-              for(Profesor p : this.profesor.buscarSueldosMayoresANamed(1800)){
-                  System.out.println(p.getNombre() + " " + p.getApellido() + " - Sueldo: " + p.getSueldo());
-              }
+            //METODO BUSCAR POR GENERO NATIVO
+            System.out.println( "MÉTODO BUSCAR POR GENERO NATIVO"); 
+            for (Profesor p : this.profesor.buscarPorGeneroNativo("M")) {
+                if (p != null) {
+                    System.out.println("Profesor encontrado: " + p.toString());
+                } else {
+                    System.out.println("No se encontró ningún profesor con ese género.");
+                }
+            }
 
             return 0;
         }

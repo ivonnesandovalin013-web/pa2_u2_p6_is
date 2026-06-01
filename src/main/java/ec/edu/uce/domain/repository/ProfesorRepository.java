@@ -16,4 +16,8 @@ public interface ProfesorRepository {
     public List<Profesor> seleccionarPorAsignaturaNamed(String asignatura);
     public Long contarPorGradoAcademicoNamed(String gradoAcademico);
     public List<Profesor> seleccionarSueldoMayorANamed(Integer sueldo);
+    public Profesor seleccionarPorCedulaNativo(String cedula);
+    public List<Profesor> seleccionarPorNombreNativo(String nombreTexto);
+    public List<Profesor> seleccionarPorGeneroNativo(String genero);
+
 }
