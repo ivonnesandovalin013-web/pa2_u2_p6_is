@@ -20,6 +20,8 @@ public interface EstudianteRepository {
     public List<Estudiante> seleccionarPorApellido(String apellido);
     public Long seleccionarContar();
     public List<Estudiante> seleccionarTodosNative();
-    
+    public List<Estudiante> seleccionarTodosCriterial();
+    public List<Estudiante> seleccionarPorNombreCriterial(String nombre);
+    public List<Estudiante> seleccionarDinamicoCriterial(String nombre, String apellido);
 
 }

@@ -48,58 +48,36 @@ public class Main {
             this.estudiante.guardar(estudiante2);
             this.estudiante.guardar(estudiante3);
         
-
-            //METODO BUSCAR TODOS
-           /*  System.out.println( "MÉTODO BUSCAR TODOS");
-            System.out.println("Lista de estudiantes:");
-            for (Estudiante e : this.estudiante.buscarTodos()) {
-                System.out.println(e.toString());
+            //METODO CONSULTAR TODOS CRITERIAL
+            System.out.println( "MÉTODO CONSULTAR TODOS CRITERIAL");
+            System.out.println( "Lista de estudiantes: ");
+            for(Estudiante e: this.estudiante.consultarTodosCriterial()){
+                System.out.println( e.toString());
             }
 
-            //METODO CONSULTAR POR NOMBRE
-            System.out.println( "MÉTODO CONSULTAR POR NOMBRE");
-            System.out.println("Lista de estudiantes con el nombre 'Nayely':");
-            for(Estudiante e: this.estudiante.consultarPorNombre("Nayely")){
-                System.out.println(e.toString());
-            }*/
-
-            //METODO CONSULTAR POR CEDULA
-            /*System.out.println("METODO CONSULTAR POR CEDULA");
-            System.out.println("Estudiante con celdula '1752152924' : ");
-            System.out.println(this.estudiante.consultarPorCedula("1752152924"));*/
-
-            System.out.println( "MÉTODO CONSULTAR POR GENERO");
-            System.out.println("Lista de estudiantes con el GENERO M':");
-            for(Estudiante e: this.estudiante.consultarPorGenero("M")){
-                System.out.println(e.toString());
+            //MÉTODO CONSULTAR POR NOMBRE CRITERIAL
+            System.out.println( "MÉTODO CONSULTAR POR NOMBRE CRITERIAL");
+            for(Estudiante e: this.estudiante.consultarPorNombreCriterial("Lesly")){
+                System.out.println("Estudiante encontrado: "+ e.toString());
             }
 
-            
-            System.out.println( "MÉTODO CONSULTAR POR GENERO TYPED");
-            System.out.println("Lista de estudiantes con el GENERO F':");
-            for(Estudiante e: this.estudiante.consultarPorGeneroTyped("F")){
-                System.out.println(e.toString());
+            //METODO CONSULTAR DINAMICO CRITERIAL
+            System.out.println( "MÉTODO CONSULTAR DINAMICO CRITERIAL");
+            System.out.println("----Por nombre y apellido-----");
+            for(Estudiante e: this.estudiante.consultarDinamicoCriterial("Lesly", "Vela")){
+                System.out.println("Estudiante encontrado: "+ e.toString());
             }
-
-            System.out.println( "MÉTODO CONSULTAR POR RANGO DE FECHAS");
-            System.out.println("Lista de estudiantes nacidos entre los 2010-01-01 y 2020-01-01':");
-            for(Estudiante e: this.estudiante.consultarPorRangoFechas(LocalDate.of(2010, 1, 1), LocalDate.of(2020, 1, 1))){
-                System.out.println(e.toString());
+            System.out.println("----Por nombre----");
+            for(Estudiante e: this.estudiante.consultarDinamicoCriterial("Lesly", null)){
+                System.out.println("Estudiante encontrado: "+ e.toString());
             }
-
-            System.out.println( "MÉTODO CONSULTAR POR APELLIDO");
-            System.out.println("Lista de estudiantes con apellido 'Sandovalin':");
-            for(Estudiante e: this.estudiante.consultarPorApellido("Sandovalin")){
-                System.out.println(e.toString());
+            System.out.println("----Por apellido----");
+             for(Estudiante e: this.estudiante.consultarDinamicoCriterial(null, "Vela")){
+                System.out.println("Estudiante encontrado: "+ e.toString());
             }
-
-            System.out.println( "MÉTODO CONTAR ESTUDIANTES");
-            System.out.println("Cantidad de estudiantes registrados: " + this.estudiante.consultarContar());
-
-            System.out.println("METODO CONSULTAR POR NATIVE");
-            System.out.println("Lista de estudiantes utilizando consulta nativa:");
-            for(Estudiante e: this.estudiante.consultarTodosNative()){
-                System.out.println(e.toString());
+            System.out.println("----Por ambos null----");
+            for(Estudiante e: this.estudiante.consultarDinamicoCriterial(null, null)){
+                System.out.println("Estudiante encontrado: "+ e.toString());
             }
 
 

@@ -64,4 +64,16 @@ public class EstudianteService { //Programamos todos los casos de uso de Estudia
         return this.estudianteRepository.seleccionarTodosNative();
     }
 
+    public List<Estudiante> consultarTodosCriterial(){
+        return this.estudianteRepository.seleccionarTodosCriterial();
+    }
+
+    public List<Estudiante> consultarPorNombreCriterial(String nombre){
+        return this.estudianteRepository.seleccionarPorNombreCriterial(nombre);    
+    }
+
+    public List<Estudiante> consultarDinamicoCriterial(String nombre, String apellido){
+        return this.estudianteRepository.seleccionarDinamicoCriterial(nombre, apellido);
+    }
+
 }
