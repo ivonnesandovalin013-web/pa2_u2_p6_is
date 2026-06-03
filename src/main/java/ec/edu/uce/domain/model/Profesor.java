@@ -38,6 +38,10 @@ public class Profesor {
     private Integer sueldo;
     @Column(name = "prof_fecha_ingreso")
     private LocalDate fechaIngreso;
+    @Column (name = "prof_genero")
+    private String genero;
+    @Column (name = "prof_cedula")
+    private String cedula;
 
     public Integer getId() {
         return id;
@@ -81,11 +85,28 @@ public class Profesor {
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
+
+    public String getGenero() {
+        return genero;
+    }
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    public String getCedula() {
+        return cedula;
+    }
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
     @Override
     public String toString() {
         return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", asignatura=" + asignatura
-                + ", gradoAcademico=" + gradoAcademico + ", sueldo=" + sueldo + ", fechaIngreso=" + fechaIngreso + "]";
+                + ", gradoAcademico=" + gradoAcademico + ", sueldo=" + sueldo + ", fechaIngreso=" + fechaIngreso
+                + ", genero=" + genero + ", cedula=" + cedula + "]";
     }
+    
+    
+    
 
     
     
