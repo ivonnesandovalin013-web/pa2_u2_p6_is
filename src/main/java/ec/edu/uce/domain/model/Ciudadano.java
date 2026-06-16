@@ -49,4 +49,9 @@ public class Ciudadano {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public void setFechayHora(LocalDateTime of) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setFechayHora'");
+    }
+
 }

@@ -2,6 +2,7 @@ package ec.edu.uce.domain.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Empleado {
     private Double salario;
     @Column(name = "empl_fecha_ingreso")
     private LocalDateTime fechaIngreso;
-    @OneToOne //sobre este atributo menciono que tiene una relacion one to one
+    @OneToOne (cascade = CascadeType.ALL) //sobre este atributo menciono que tiene una relacion one to one
     @JoinColumn(name = "empl_ciudadano") // nombre de la columna en la tabla de empleados que referencia a la tabla de ciudadanos
     private Ciudadano ciudadano;
 
@@ -59,6 +60,14 @@ public class Empleado {
     public void setCiudadano(Ciudadano ciudadano) {
         this.ciudadano = ciudadano;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado [id=" + id + ", salario=" + salario + ", fechaIngreso=" + fechaIngreso + ", ciudadano="
+                + ciudadano + "]";
+    }
+
+    
     
 
 }
