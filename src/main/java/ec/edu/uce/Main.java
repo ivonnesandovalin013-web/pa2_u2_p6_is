@@ -63,9 +63,8 @@ public class Main {
             Empleado e1 = new Empleado();
             e1.setCiudadano(c2);
             e1.setFechaIngreso(LocalDateTime.of(2025,02,01, 9,0));
-            e1.setSalario(null);
+            e1.setSalario(20000.0);
             this.empleadoService.guardar(e1);
-
         
 
 
