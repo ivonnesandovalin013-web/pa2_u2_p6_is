@@ -1,5 +1,6 @@
 package ec.edu.uce.domain.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,9 +24,10 @@ public class Motor {
     private String numeroSerie;
     @Column(name = "motor_cilindraje")
     private String cilindraje;
-    @OneToOne
-    @JoinColumn(name = "motor_auto_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "motor_automovil")
     private Automovil automovil;
+
     public Integer getId() {
         return id;
     }
@@ -49,6 +51,11 @@ public class Motor {
     }
     public void setAutomovil(Automovil automovil) {
         this.automovil = automovil;
+    }
+    @Override
+    public String toString() {
+        return "Motor [id=" + id + ", numeroSerie=" + numeroSerie + ", cilindraje=" + cilindraje + ", automovil="
+                + automovil + "]";
     }
 
     
