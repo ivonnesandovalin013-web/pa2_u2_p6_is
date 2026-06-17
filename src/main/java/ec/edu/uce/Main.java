@@ -61,7 +61,7 @@ public class Main {
             this.motorService.guardar(mot1); 
             */
 
-            System.out.println("--- ESCENARIO 3: Guardando con violación de NOT NULL ---");
+           System.out.println("--- ESCENARIO 3: Guardando con violación de NOT NULL ---");
         
             Automovil auto2 = new Automovil();
             auto2.setChasis(987654);
@@ -78,7 +78,6 @@ public class Main {
             mot2.setAutomovil(auto2);
 
             this.motor.guardar(mot2);
-
 
             return 0;
         }
