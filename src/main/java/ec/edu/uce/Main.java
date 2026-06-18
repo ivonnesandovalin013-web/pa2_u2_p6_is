@@ -2,13 +2,18 @@ package ec.edu.uce;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import ec.edu.uce.application.service.CiudadanoServices;
+import ec.edu.uce.application.service.ClienteService;
 import ec.edu.uce.application.service.EmpleadoServices;
 import ec.edu.uce.application.service.EstudianteService;
 import ec.edu.uce.domain.model.Ciudadano;
+import ec.edu.uce.domain.model.Cliente;
 import ec.edu.uce.domain.model.Empleado;
 import ec.edu.uce.domain.model.Estudiante;
+import ec.edu.uce.domain.model.Pedido;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -23,54 +28,35 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private CiudadanoServices ciudadanoService;
-        @Inject
-        private EmpleadoServices empleadoService;
+        private ClienteService clienteService;
 
         public int run(String... args) {
             
-            Ciudadano c1 = new Ciudadano();
-            c1.setNombre("Juan Perez");
-            c1.setFechaNacimiento(LocalDateTime.of(2000, 1, 1, 15, 30));
-            
+            System.out.println("Inicio Programa");
 
-            System.out.println("Metodo Guardar Ciudadano");
-            this.ciudadanoService.guardar(c1);
-            System.out.println("Ciudadano guardado con exito");
+            Cliente c1 = new Cliente();
+            c1.setNombre("Nayely");
+            c1.setCedula("175214896");
 
-           /* System.out.println("Metodo Guardar Empleado");  
-            
-            Empleado em = new Empleado();
-            em.setSalario(20000.0);
-            em.setFechaIngreso(LocalDateTime.of(2020, 8, 4, 14, 30));
-            
-            em.setCiudadano(new Ciudadano());
-            
-            em.getCiudadano().setNombre("Genessis Molina");
-            em.getCiudadano().setFechayHora(LocalDateTime.of(2003, 1, 1, 14, 30));
-            
-            this.empleadoService.guardar(em);*/
+            Pedido p1 = new Pedido();
+            p1.setTotal(Double.valueOf(10));
+            p1.setCliente(c1);
+            p1.setFecha(LocalDate.of(2026, 10, 10));
 
-          
-            Ciudadano c2 = new Ciudadano();
-            c2.setNombre("Maria Gomez");
-            c2.setFechaNacimiento(LocalDateTime.of(1995, 5, 20, 10, 0));
-            //this.ciudadanoService.guardar(c2);
+            Pedido p2 = new Pedido();
+            p2.setTotal(Double.valueOf(100));
+            p2.setCliente(c1);
+            p2.setFecha(LocalDate.of(2026, 5, 1));
 
-            //c2.setNombre("Jose Vidal");
-            //System.out.println(c2.getId());
+            List<Pedido> pedidos = new ArrayList<>();
+            pedidos.add(p1);
+            pedidos.add(p2);
 
-            Empleado e1 = new Empleado();
-            e1.setCiudadano(c2);
-            e1.setFechaIngreso(LocalDateTime.of(2025,02,01, 9,0));
-            e1.setSalario(20000.0);
-            this.empleadoService.guardar(e1);
-        
+            c1.setPedidos(pedidos);
 
-
-
-                    
-
+            this.clienteService.guardar(c1);
+         
+            System.out.println("Cliente: "+c1);
 
             return 0;
         }
