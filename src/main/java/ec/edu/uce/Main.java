@@ -2,11 +2,16 @@ package ec.edu.uce;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import ec.edu.uce.application.service.AutomovilService;
+import ec.edu.uce.application.service.ComputadoraService;
 import ec.edu.uce.application.service.MotorServices;
 import ec.edu.uce.application.service.ProfesorService;
 import ec.edu.uce.domain.model.Automovil;
+import ec.edu.uce.domain.model.Componente;
+import ec.edu.uce.domain.model.Computadora;
 import ec.edu.uce.domain.model.Estudiante;
 import ec.edu.uce.domain.model.Motor;
 import ec.edu.uce.domain.model.Profesor;
@@ -24,60 +29,38 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private AutomovilService automovil;
-
-        @Inject
-        private MotorServices motor;
+        private ComputadoraService computadora;
 
         public int run(String... args) {
+            System.out.println("Iniciando el proograma");
+            Computadora c = new Computadora();
+            c.setMarca("ASUS");
+            c.setModelo("Vivobook");
 
+            Componente componente1 = new Componente();
+            componente1.setNombre("ASUS TUF Gaming B650-Plus WiFi");
+            componente1.setTipo("Placa Base");
 
-            Automovil a1 = new Automovil();
+            Componente componente2 = new Componente();
+            componente2.setNombre("Intel Iris Xe Graphics");
+            componente2.setTipo("Tarjeta Gráfica");
 
-            a1.setChasis(12345);
-            a1.setModelo("500");
-            a1.setMarca("fiat");
-            a1.setColor("celeste");
+            Componente componente3 = new Componente();
+            componente3.setNombre("8GB DDR4 (Onboard)");
+            componente3.setTipo("RAM");
 
-            System.out.println("Guardando automovil");
-            this.automovil.guardar(a1);
+            List<Componente> componentes = new ArrayList<>();
+            componentes.add(componente1);
+            componentes.add(componente2);
+            componentes.add(componente3);
 
-            System.out.println("Guardado "+a1);
+            c.setComponentes(componentes);
 
-            /*
-            System.out.println("--- ESCENARIO 2: Guardando Motor con Auto no persistido ---");
-            
-            Motor mot1 = new Motor();
-            mot1.setNumeroSerie("MOT-999-XYZ");
-            mot1.setCilindraje("2.0");
-            
-            // Le pasamos un auto que vive en memoria pero que NO se ha guardado en la BD
-            mot1.setAutomovil(new Automovil());
-            mot1.getAutomovil().setChasis(77777);
-            mot1.getAutomovil().setMarca("Chevrolet");
-            mot1.getAutomovil().setModelo("Sail");
-            mot1.getAutomovil().setColor("Azul");
+            this.computadora.guardar(c);
 
-            this.motorService.guardar(mot1); 
-            */
+            System.out.println("Computadora guardada: "+ c);
 
-           System.out.println("--- ESCENARIO 3: Guardando con violación de NOT NULL ---");
-        
-            Automovil auto2 = new Automovil();
-            auto2.setChasis(987654);
-            auto2.setMarca("Hyundai");
-            auto2.setModelo("Tucson");
-            auto2.setColor("Negro");
-            //this.automovil.guardar(auto2);
-
-            Motor mot2 = new Motor();
-            mot2.setNumeroSerie("EAD2345"); 
-            mot2.setCilindraje("1.6");
-            
-            // Asociamos el automóvil
-            mot2.setAutomovil(auto2);
-
-            this.motor.guardar(mot2);
+           
 
             return 0;
         }
